@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import { listProductDetails } from '../actions/productActions'
+import {
+  listProductDetails,
+  clearProductDetails,
+} from '../actions/productActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
@@ -16,6 +19,7 @@ const ProductScreen = ({ match, history }) => {
 
   useEffect(() => {
     dispatch(listProductDetails(match.params.id))
+    return () => dispatch(clearProductDetails)
   }, [dispatch, match])
 
   const addToCartHandler = () => {
