@@ -7,11 +7,15 @@ const oderSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
-    oderitems: [
+    orderItems: [
       {
         name: { type: String, required: true },
         qty: { type: Number, required: true },
         price: { type: Number, required: true },
+        image: {
+          type: String,
+          required: true,
+        },
         product: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
