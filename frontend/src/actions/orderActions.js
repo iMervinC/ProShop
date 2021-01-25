@@ -14,6 +14,7 @@ import {
   ORDER_LIST_MY_FAIL,
   ORDER_LIST_MY_SUCCESS,
 } from '../constants/orderConstants'
+import { resetCart } from '../actions/cartActions'
 
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
@@ -35,6 +36,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     const { data } = await axios.post(`/api/orders`, order, config)
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data })
+    dispatch(resetCart())
   } catch (error) {
     dispatch({
       type: ORDER_CREATE_FAIL,
